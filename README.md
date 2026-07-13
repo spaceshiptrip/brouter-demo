@@ -11,6 +11,7 @@ http://localhost:17777/brouter
 ## Files
 
 - `brouter-demo.html` — route-builder demo UI
+- `tile-cache-sw.js` — service worker that caches app files and map tiles that have actually been viewed
 - `NOTES.md` — detailed source-build setup log and troubleshooting notes from the local BRouter install
 - `BRouter-Setup.md` — older release-zip setup notes
 
@@ -140,6 +141,10 @@ Then open:
 ```text
 http://localhost:8000/brouter-demo.html
 ```
+
+When served over `http://localhost`, the demo registers `tile-cache-sw.js`. It caches the app shell plus Carto basemap tiles that the browser actually requests while you pan and zoom. It does not bulk-download map areas.
+
+For offline map visibility, first open the demo while online and pan/zoom through the places and zoom levels you need. Later, those exact viewed tiles can be served from the browser cache. BRouter routing still needs the matching local `.rd5` files.
 
 ## Notes
 

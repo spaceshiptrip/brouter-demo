@@ -468,6 +468,12 @@ const waypoints = [];
 let routeLayer = null;
 let markers = [];
 
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('./tile-cache-sw.js')
+    .then(() => console.log('tile cache service worker registered'))
+    .catch((err) => console.warn('tile cache service worker failed', err));
+}
+
 // ── MAP INIT ──────────────────────────────────────────────
 const map = L.map('map', {
   center: [34.05, -118.25],
